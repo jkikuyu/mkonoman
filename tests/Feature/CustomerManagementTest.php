@@ -50,7 +50,6 @@ class CustomerManagementTest extends TestCase
     }
     public function test_a_customer_detail_can_be_updated()
     {
-        $this->withoutExceptionHandling();
 
         $response = $this->post('/customer', ['lastname' => "Doe", 'othernames' => 'John', 'phone' => '0792321223', 'email' => 'abc@def.com']);
         $customer = Customer::first();
