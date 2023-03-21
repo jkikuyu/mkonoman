@@ -13,13 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return ['Laravel' => app()->version()];
+});
 
-Route::post('/servicelist', "ServiceListController@store");
-Route::patch('/servicelist/{repairService}', "ServiceListController@update");
-Route::delete('/servicelist/{repairService}', "ServiceListController@destroy");
-Route::post('/contractor', "ContractorController@store");
-Route::patch('/contractor/{contractor}', "ContractorController@update");
-Route::delete('/contractor/{contractor}', "ContractorController@destroy");
-Route::post('/customer', "CustomerController@store");
-Route::patch('/customer/{customer}', "CustomerController@update");
-Route::delete('/customer/{customer}', "CustomerController@destroy");
+require __DIR__.'/auth.php';
