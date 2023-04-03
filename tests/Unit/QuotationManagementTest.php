@@ -9,6 +9,15 @@ use Tests\TestCase;
 class QuotationManagementTest extends TestCase
 {
     use RefreshDatabase;
+    public function test_a_quotation_can_be_added()
+    {
+        $customer = factory(Customer::class)->create();
+        $repairservice = factory(RepairService::class)->create();
+        $customer->quotationRequest($repairservice);
+    }
+    public function test_a_quotation_can_be_update()
+    {
+    }
     public function test_a_quotation_can_be_prepared()
     {
         $customer = factory(Customer::class)->create();
