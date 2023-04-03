@@ -21,8 +21,10 @@ class CustomerManagementTest extends TestCase
      *
      * @return void
      */
-    public function test_a_customer_makes_a_service_request()
+    public function test_a_customer_can_make_a_service_request()
     {
+        $user = UserFactory(User::class)->create();
+        $quotation = QuotationFactory(Quotation::class)->create();
     }
     public function test_a_customer_makes_a_quotation_request()
     {
