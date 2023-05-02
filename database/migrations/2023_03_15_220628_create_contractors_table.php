@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('contractors', function (Blueprint $table) {
             $table->id();
-            $table->string('lastname', 50);
-            $table->string('othernames', 100);
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->string('jobtype', 4);
             $table->softDeletes();
             $table->timestamps();
