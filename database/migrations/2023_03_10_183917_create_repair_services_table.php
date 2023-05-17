@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('repair_services', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('description');
+            $table->char('category', 1)->nullable(false);
+            $table->bigInteger('parentid')->default(0);
+            $table->integer('sortorder')->default(0);
+            $table->string('name', 20)->nullable(false);
+            $table->string('description', 50);
             $table->softDeletes();
             $table->timestamps();
         });
