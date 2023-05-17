@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
 
 class RegistrationTest extends TestCase
 {
@@ -11,15 +12,16 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register(): void
     {
-        $response = $this->post('/register', [
-            'familyname' => 'Test',
-            'othernames' => 'User',
+        $user = User::factory()->make();
+        $response = $this->post('/register', [$user]);
+
+        /*         $response = $this->post('/register', [
             'phone' => '2345677',
             'type' => '1',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
-        ]);
+        ]); */
 
         $this->assertAuthenticated();
         $response->assertNoContent();
