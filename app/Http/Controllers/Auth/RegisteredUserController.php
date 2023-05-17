@@ -20,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): Response
     {
-        $request->validate([
+
+        $validated = $request->validate([
             'familyname' => ['required', 'string', 'max:100'],
             'othernames' => ['required', 'string', 'max:100'],
             'phone' => ['required', 'string', 'max:100'],
@@ -28,9 +29,11 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
         $user = User::create([
-            'name' => $request->name,
+            'familyname' => $request->familyname,
+            'othernames' => $request->othernames,
+            'phone' => $request->phone,
+            'type' => $request->type,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
